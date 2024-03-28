@@ -8,7 +8,8 @@ app.get("/", (req, res) => {
 
 app.get("/sum", (req, res) => {
   const num = req.query.num;
-  res.send("Your number is: " + num);
+  const num2 = req.query.num2;
+  res.send("The sum is: " + (num + num2));
 });
 
 app.listen(PORT, () => {
