@@ -12,6 +12,12 @@ app.get("/sum", (req, res) => {
   res.send("The sum is: " + (num + num2));
 });
 
+app.get("/sub", (req, res) => {
+  const num = req.query.num;
+  const num2 = req.query.num2;
+  res.send("The diff is: " + (num - num2));
+});
+
 app.listen(PORT, () => {
   console.log("Listening on port: " + PORT);
 });
