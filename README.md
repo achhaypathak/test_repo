@@ -1,2 +1,2 @@
 ### Testing out 
-- Nothing just a trail app.
+- Nothing just a trial app.
