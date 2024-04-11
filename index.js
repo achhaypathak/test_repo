@@ -14,11 +14,11 @@ app.get("/sum", (req, res) => {
 });
 
 
-app.get("/mul", (req, res) => {
+app.get("/prod", (req, res) => {
   const num = req.query.num;
   const num2 = req.query.num2;
-  const mul = num + num2;
-  res.send("The sum is: " + mul);
+  const prod = num + num2;
+  res.send("The sum is: " + prod);
 });
 
 
