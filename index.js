@@ -3,7 +3,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
-  res.json({ msg: "Hello World" });
+  res.json({ msg:"Welcome Jolly!" });
 });
 
 app.get("/sum", (req, res) => {
