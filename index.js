@@ -13,6 +13,12 @@ app.get("/sum", (req, res) => {
   res.send("The sum is: " + sum);
 });
 
+app.get("/diff", (req, res) => {
+  const num = req.query.num;
+  const num2 = req.query.num2;
+  const diff = num - num2;
+  res.send("The sum is: " + diff);
+});
 
 app.get("/prod", (req, res) => {
   const num = req.query.num;
