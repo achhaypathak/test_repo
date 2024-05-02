@@ -15,4 +15,4 @@ RUN npm install
 
 EXPOSE 3005
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "server.js" ]
