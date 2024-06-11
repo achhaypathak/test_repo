@@ -30,6 +30,10 @@ jobs:
             - name: Verify Pushed Image
               run: docker pull achhaypathak/test-image:latest
 
+            - name: echo
+              run: |
+                  echo Username: ${{ secrets.DOCKER_USERNAME }}
+
             - name: Deploy using Watchtower
               run: |
                   curl --location 'https://watchtower.dev.gistimpact.org/v1/update' --header 'Authorization: Bearer ${{ secrets.TOKEN }}' --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}'  --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}' --ssl-no-revoke
