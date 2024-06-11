@@ -29,5 +29,10 @@ jobs:
 
             - name: Verify Pushed Image
               run: docker pull achhaypathak/test-image:latest
+
+            - name: Deploy using Watchtower
+              run: |
+                  curl --location 'https://watchtower.dev.gistimpact.org/v1/update' --header 'Authorization: Bearer XMaCNcA4vtnV78mxjOpaZs9EXTUDmKZ8ijj908pxXEtaekb12M' --header 'CF-Access-Client-Id: 16a7b234c06cc0e5b8117ce78e0c0f82.access'  --header 'CF-Access-Client-Secret: 2ac5cab5cdb428f7e2bec1c1628df13f1ad07a2561bf5ddc780eb5c8a7e3b6fe' --ssl-no-revoke
+
             
               
