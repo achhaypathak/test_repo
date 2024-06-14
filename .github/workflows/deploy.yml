@@ -1,13 +1,14 @@
 name: Deploy to Dockerhub
 
 on: 
-    push:
-        branches: [ "main" ]
-    pull_request: 
-        branches: [ "main" ]
+    workflow_run: 
+      workflows: ["Build"]
+      types: 
+        - completed
 
 jobs:
     build-and-push:
+        if: ${{ github.event.workflow_run.conclusion == 'success' }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout Repo
@@ -19,7 +20,7 @@ jobs:
                 username: ${{ secrets.DOCKER_USERNAME }}
                 password: ${{ secrets.DOCKER_PASSWORD }}
 
-            - name: Build and Push Docker image
+            - name: Build and Push Docker image to DockerHub
               uses: docker/build-push-action@v5
               with:
                 context: .
@@ -30,13 +31,12 @@ jobs:
             - name: Verify Pushed Image
               run: docker pull achhaypathak/test-image:latest
 
-            - name: echo
-              run: |
-                  echo Username: ${{ secrets.DOCKER_USERNAME }}
-
             - name: Deploy using Watchtower
               run: |
-                  curl --location 'https://watchtower.dev.gistimpact.org/v1/update' --header 'Authorization: Bearer ${{ secrets.WT_TOKEN }}' --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}'  --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}' --ssl-no-revoke
+                  curl --location 'https://watchtower.dev.gistimpact.org/v1/update' \
+                  --header 'Authorization: Bearer ${{ secrets.WT_TOKEN }}' \
+                  --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}'  \
+                  --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}'
 
             
               
