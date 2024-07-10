@@ -8,7 +8,7 @@ on:
 
 env:
   ENV_BASE: dev
-  WT_TOKEN: ${{ inputs.branch == 'dev' && secrets.WT_TOKEN || inputs.branch == 'staging' && secrets.WT_TOKEN_STAGE }
+  WT_TOKEN: ${{ inputs.branch == 'dev' && secrets.WT_TOKEN || inputs.branch == 'staging' && secrets.WT_TOKEN_STAGE }}
 
 jobs:
     build-and-push:
