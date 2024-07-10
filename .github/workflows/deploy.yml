@@ -8,7 +8,7 @@ on:
 
 env:
   ENV_BASE: dev
-  WT_TOKEN: ${{ inputs.branch == 'dev' && secrets.WT_TOKEN || inputs.branch == 'staging' && secrets.WT_TOKEN_STAGE }}
+  # WT_TOKEN: ${{ inputs.branch == 'dev' && secrets.WT_TOKEN || inputs.branch == 'staging' && secrets.WT_TOKEN_STAGE }}
 
 jobs:
     build-and-push:
@@ -37,7 +37,7 @@ jobs:
 
             - name: Deploy using Watchtower
               run: |
-                  curl --location 'https://watchtower.${{ env.ENV_BASE }}.gistimpact.org/v1/update' --header 'Authorization: Bearer ${{ secrets.WT_TOKEN }}' --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}' --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}'
+                  curl --location 'https://watchtower.${{ inputs.branch }}.gistimpact.org/v1/update' --header 'Authorization: Bearer ${{ inputs.branch == 'dev' && secrets.WT_TOKEN || inputs.branch == 'staging' && secrets.WT_TOKEN_STAGE }}' --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}' --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}'
 
             
               
