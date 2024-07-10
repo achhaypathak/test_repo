@@ -33,10 +33,7 @@ jobs:
 
             - name: Deploy using Watchtower
               run: |
-                  curl --location 'https://watchtower.dev.gistimpact.org/v1/update' \
-                  --header 'Authorization: Bearer ${{ secrets.WT_TOKEN }}' \
-                  --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}'  \
-                  --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}'
+                  curl --location 'https://watchtower.${{ env.ENV_BASE }}.gistimpact.org/v1/update' --header 'Authorization: Bearer ${{ env.WT_TOKEN }}' --header 'CF-Access-Client-Id: ${{ secrets.CF_ACCESS_CLIENT_ID }}' --header 'CF-Access-Client-Secret: ${{ secrets.CF_ACCESS_CLIENT_SECRET }}'
 
             
               
