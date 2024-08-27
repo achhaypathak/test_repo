@@ -18,9 +18,6 @@ app.get("/sub", (req, res) => {
   res.send("The diff is: " + (num - num2));
 });
 
-// Added a temp comment
-// Added another comment
-
 
 app.listen(PORT, () => {
   console.log("Listening on port: " + PORT);
