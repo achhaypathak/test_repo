@@ -50,7 +50,9 @@ jobs:
               - stable
     runs-on: ubuntu-latest
     steps:
-      - name: Logging
+      - name: Echo image names
         run: |
-          echo Image File is is gistimpact/${{ matrix.folder }}:${{ matrix.files }}
-          echo Image tag is gistimpact/${{ matrix.folder }}:${{ matrix.tags }}
+          echo "Generated image names for the build:"
+          echo "DockerHub: gistimpact/${{ matrix.folder }}:${{ matrix.tags }}"
+          echo "GitHub Container Registry: ghcr.io/gistimpact/${{ matrix.folder }}:${{ matrix.tags }}"
+
