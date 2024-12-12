@@ -51,4 +51,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Logging
-        run: echo Image is gistimpact/${{ matrix.folder }}:${{ matrix.tags }}
+        run: |
+          echo Image File is is gistimpact/${{ matrix.folder }}:${{ matrix.files }}
+          echo Image tag is gistimpact/${{ matrix.folder }}:${{ matrix.tags }}
