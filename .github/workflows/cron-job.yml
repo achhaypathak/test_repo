@@ -6,6 +6,8 @@ on:
     - cron: "0 0 * * 0"
 
   workflow_dispatch:
+  push:
+    - main
 
 jobs:
   docker:
@@ -49,4 +51,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Logging
-        run: echo "gistimpact/${{ matrix.folder }}:${{ matrix.tags }}"
+        run: echo Image is gistimpact/${{ matrix.folder }}:${{ matrix.tags }}
