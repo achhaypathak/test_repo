@@ -51,10 +51,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Echo image names
+        env:
+          FOLDER: ${{ matrix.folder }}
+          TAGS: ${{ toJson(matrix.tags) }}
         run: |
           echo "Generated image names for the build:"
-          for tag in ${{ toJSON(matrix.tags) }}; do
-            echo "DockerHub: gistimpact/${{ matrix.folder }}:$(echo $tag | tr -d '"')"
-            echo "GitHub Container Registry: ghcr.io/gistimpact/${{ matrix.folder }}:$(echo $tag | tr -d '"')"
+          echo "$TAGS" | jq -r '.[]' | while read -r tag; do
+            echo "DockerHub: gistimpact/$FOLDER:$tag"
+            echo "GitHub Container Registry: ghcr.io/gistimpact/$FOLDER:$tag"
           done
 
