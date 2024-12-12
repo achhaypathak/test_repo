@@ -1,0 +1,52 @@
+name: Build and Push base image
+
+on:
+  schedule:
+    # Runs every week on Sunday at 00:00 UTC
+    - cron: "0 0 * * 0"
+
+  workflow_dispatch:
+
+jobs:
+  docker:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - folder: java
+            files:
+              - Dockerfile.corretto17
+              - Dockerfile.corretto21
+            tags:
+              - 17
+              - 21
+
+          - folder: maven
+            files:
+              - Dockerfile.maven3.8.java-17
+              - Dockerfile.maven3.9.java17
+              - Dockerfile.maven3.9.java21
+            tags:
+              - 3.8-java17
+              - 3.9-java17
+              - 3.9-java21
+
+          - folder: node
+            files:
+              - Dockerfile.node18
+              - Dockerfile.node20
+              - Dockerfile.node22
+            tags:
+              - 18
+              - 20
+              - 22
+
+          - folder: nginx
+            files:
+              - Dockerfile.nginx
+            tags:
+              - stable
+    runs-on: ubuntu-latest
+    steps:
+      - name: Logging
+        run: echo "gistimpact/${{ matrix.folder }}:${{ matrix.tags }}"
