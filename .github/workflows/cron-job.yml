@@ -53,6 +53,8 @@ jobs:
       - name: Echo image names
         run: |
           echo "Generated image names for the build:"
-          echo "DockerHub: gistimpact/${{ matrix.folder }}:${{ matrix.tags }}"
-          echo "GitHub Container Registry: ghcr.io/gistimpact/${{ matrix.folder }}:${{ matrix.tags }}"
+          for tag in ${{ toJSON(matrix.tags) }}; do
+            echo "DockerHub: gistimpact/${{ matrix.folder }}:$(echo $tag | tr -d '"')"
+            echo "GitHub Container Registry: ghcr.io/gistimpact/${{ matrix.folder }}:$(echo $tag | tr -d '"')"
+          done
 
