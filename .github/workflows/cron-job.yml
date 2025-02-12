@@ -48,7 +48,7 @@ jobs:
               - Dockerfile.nginx
             tags:
               - stable
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest-xl
     steps:
       - name: Echo image names
         env:
